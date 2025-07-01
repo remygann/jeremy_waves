@@ -152,7 +152,8 @@ class LocalSpectroscopicBaselineCorrector:
             plt.grid(True, alpha=0.3)
             
             # Save plot
-            plot_path = self.directory / f"threshold_analysis_{self.reference_file.replace('.csv', '.png')}"
+            plot_filename = self.reference_file.lower().replace('.csv', '.png')
+            plot_path = self.directory / f"threshold_analysis_{plot_filename}"
             plt.savefig(plot_path, dpi=300, bbox_inches='tight')
             print(f"✓ Threshold analysis plot saved: {plot_path.name}")
             plt.show()
@@ -318,7 +319,7 @@ class LocalSpectroscopicBaselineCorrector:
         plt.tight_layout()
 
         if save_plot:
-            plot_filename = result['filename'].replace('.csv', '_correction_plot.png')
+            plot_filename = result['filename'].lower().replace('.csv', '_correction_plot.png')
             plot_path = self.directory / plot_filename
             plt.savefig(plot_path, dpi=300, bbox_inches='tight')
             print(f"✓ Plot saved: {plot_filename}")
@@ -378,7 +379,7 @@ class LocalSpectroscopicBaselineCorrector:
                 continue
 
             # Export corrected CSV
-            base_name = filename.replace('.csv', '')
+            base_name = filename.lower().replace('.csv', '')
             corrected_filename = f"{base_name}_corrected.csv"
             corrected_path = self.directory / corrected_filename
 
